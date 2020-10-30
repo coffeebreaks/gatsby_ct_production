@@ -1,22 +1,35 @@
 import React from "react"
-import { Link, useStaticQuery, graphql } from "gatsby"
+import { Link, useStaticQuery, graphql, StaticQuery } from "gatsby"
 import { Menu, Button, Grid, Box } from "@chakra-ui/core"
 import { normalizePath } from "../utils/get-url-path"
 
-export default () => {
-  const { wpMenu } = useStaticQuery(graphql`
-    {
-      wpMenu(slug: { eq: "main-menu" }) {
-        name
-        menuItems {
-          nodes {
-            label
-            url
-            parentId
-            connectedNode {
-              node {
-                ... on WpContentNode {
-                  uri
+export default () => (
+<div>
+
+
+
+<StaticQuery 
+query={graphql`
+  query MenuQuery {
+
+  menu: allWpPage (sort: {fields: menuOrder, order: ASC}) {
+    edges{
+      node {
+      title
+      uri
+      }
+    }
+  }
+
+  installningar: allWpPage(filter: {title: {eq: "Inställningar"}}) {
+    edges {
+      node {
+        ACF_PAGE_LOGO {
+          logo {
+            localFile {
+              childImageSharp {
+                fluid {
+                  originalImg
                 }
               }
             }
@@ -24,33 +37,28 @@ export default () => {
         }
       }
     }
-  `)
-
-  return !!wpMenu && !!wpMenu.menuItems && !!wpMenu.menuItems.nodes ? (
-    <Box mb={10} style={{ maxWidth: `100%` }}>
-      <Menu>
-        <Grid autoFlow="column">
-          {wpMenu.menuItems.nodes.map((menuItem, i) => {
-            if (menuItem.parentId) {
-              return null
-            }
-
-            const path = menuItem?.connectedNode?.node?.uri ?? menuItem.url
-
-            return (
-              <Link
-                key={i + menuItem.url}
-                style={{ display: `block` }}
-                to={normalizePath(path)}
-              >
-                <Button w="100%" as={Button}>
-                  {menuItem.label}
-                </Button>
-              </Link>
-            )
-          })}
-        </Grid>
-      </Menu>
-    </Box>
-  ) : null
+  }
 }
+
+
+`}
+render={data => (
+  <div id="nav-menu" className="navbar-brand">
+  <img src={data.installningar.edges[0].node.ACF_PAGE_LOGO.logo.localFile.childImageSharp.fluid.originalImg}/>
+  {data.menu.edges.map(x => x.node.title === "Inställningar"?"":
+  <Link className="navbar-item" to={x.node.uri}>
+    {x.node.title}
+  </Link>
+  )}
+  </div>
+)}
+/>
+
+
+</div>
+
+)
+
+
+
+  

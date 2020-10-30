@@ -20,12 +20,13 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress-experimental`,
       options: {
-        url:
-          process.env.WPGRAPHQL_URL ||
-          `https://dev-gatsby-source-wordpress-v4.pantheonsite.io/graphql`,
+        url: "http://webbdesign.org/chimneytec/graphql",
         verbose: true,
+        useACF: true,
+        restApiRoutePrefix: "wp-json",
+
         develop: {
-          hardCacheMediaFiles: true,
+          hardCacheMediaFiles: false,
         },
         debug: {
           graphql: {
@@ -44,7 +45,7 @@ module.exports = {
         },
       },
     },
-    `gatsby-plugin-chakra-ui`,
+    // `gatsby-plugin-chakra-ui`,
     `gatsby-transformer-sharp`,
     {
       resolve: "gatsby-plugin-react-svg",
