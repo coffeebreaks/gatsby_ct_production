@@ -34,6 +34,41 @@ export const query = graphql`
 
       
 
+      ACF_CONTENT_LOOP {
+          modules {
+            ... on WpPage_AcfContentLoop_Modules_HeroMod {
+              fieldGroupName
+              text
+              background {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      originalImg
+                    }
+                  }
+                }
+              }
+              buttons {
+                ... on WpPage_AcfContentLoop_Modules_HeroMod_Buttons_Knappar {
+                  fieldGroupName
+                  button {
+                    style
+                    transparent
+                    text
+                    url {
+                      target
+                      title
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+
+
     
       ACF_BUBBLOR {
         huvudrubrik
@@ -68,33 +103,6 @@ export const query = graphql`
 
 
 
-      ACF_HERO {
-        knapp1
-        knapp1Link
-        knapp2
-        knapp2Link
-        rubrik
-        text
-        underrubrik
-        image {
-          localFile {
-            childImageSharp {
-
-              fluid {
-                base64
-                tracedSVG
-                srcWebp
-                srcSetWebp
-                originalImg
-                originalName
-              }
-
-            }
-          }
-        
-          sourceUrl
-        }
-      }
       featuredImage {
         node {
           
