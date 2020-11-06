@@ -19,11 +19,6 @@ const HeroModule = (props) => {
   return (
   <>
 
-
-
-
-
-      
       
 <div className="full-width-image margin-top-0" style={{ backgroundImage: `url(${props.data.background.localFile.childImageSharp.fluid.originalImg}) `}}>
     
@@ -93,10 +88,39 @@ if (ACF_CONTENT_LOOP.modules !== null){
        
   return (
   <Layout>
-    {ACF_CONTENT_LOOP.modules.map(x=> 
-    {console.log(x)}
-    )}
-    <CreateModuleFromACF fieldGroupName={ACF_CONTENT_LOOP.modules[1].fieldGroupName} data={ACF_CONTENT_LOOP.modules[0]} />
+    {ACF_CONTENT_LOOP.modules.map(x => 
+      
+      <CreateModuleFromACF fieldGroupName={x.fieldGroupName} data={x} />
+      
+      )}
+   
+
+   <div className="page-container">
+    <div className="page-content">
+    <div class="content-block">
+
+
+
+        {title === "Startsida"?ACF_CONTENT_BLOCK.innehall.map(x => 
+        <CardBlock  background={x?.bild?.localFile?.childImageSharp?.fluid?.originalImg}
+                    rubrik={x.rubrik}
+                    text={x.text}
+                    link={"s"}
+        />
+        ):""}
+
+
+
+
+
+        {title === "Startsida"?
+        <Bubbla data={ACF_BUBBLOR}/>
+        :"2"}
+
+      </div>
+      </div>
+      </div>
+
   </Layout>
   )
 }
