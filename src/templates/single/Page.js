@@ -69,6 +69,20 @@ export const query = graphql`
           }
 
 
+          ... on WpPage_AcfContentLoop_Modules_Infokort {
+            fieldGroupName
+            rubrik
+             background { 
+                localFile { childImageSharp { fluid {originalImg} } }
+                }
+            textkolumn {
+              ... on WpPage_AcfContentLoop_Modules_Infokort_Textkolumn_Textkolumn {
+                textkolumn
+              }
+            }
+          }
+
+
 
 
           }

@@ -11,6 +11,8 @@ import { normalizePath } from "../../utils/get-url-path"
 // dynamic modules
 
 import HeroModule from "../heroModule"
+import CardField from "../cardFieldModule"
+import InfoCardModule from "../infoCardModule"
 
 
 
@@ -20,36 +22,11 @@ function BlogPost({ data }) {
 
 
 
-
-const CardField = (props) => {
-  console.log(props)
-  return (<>
-    <div class="content-block">
-  {props.data.card?.map(x => 
-    <>
-   
-    <div className="content-card" style={{background: `url(${x.background.localFile.childImageSharp.fluid.originalImg})`    }} >
-      <div className="card-arrow">
-      ⇀
-      </div>
-      <div class="text-wrapper">
-        <h1 className="text-wrapper-headings" style={{fontSize: "50px"}}>{x.title}</h1>
-        <p>{x.text}</p>
-      </div>      
-    </div>
-
-
-
-    </>
-    )}
-    </div>
-   
-    </>)
-}
  
 const translationTable = {
   page_AcfContentLoop_Modules_HeroMod : HeroModule,  
-  page_AcfContentLoop_Modules_CardField : CardField  
+  page_AcfContentLoop_Modules_CardField : CardField,  
+  page_AcfContentLoop_Modules_Infokort : InfoCardModule  
 }
 
 
@@ -74,13 +51,6 @@ if (ACF_CONTENT_LOOP.modules !== null){
       )}
     <div class="content-block">
 
-
-   
-
-
-
-
-
         {title === "Startsida"?<Bubbla data={ACF_BUBBLOR}/>:"2"}
 
       </div>
@@ -92,48 +62,10 @@ if (ACF_CONTENT_LOOP.modules !== null){
 }
 
   return (    
-    <Layout>
-
-
- 
-}
-    
-
-
-    <div className="page-container">
-    <div className="page-content">
-    <div class="content-block">
-
-
-       
-        {title === "Startsida"?ACF_CONTENT_BLOCK.innehall.map(x => 
-        <CardBlock  background={x?.bild?.localFile?.childImageSharp?.fluid?.originalImg}
-                    rubrik={x.rubrik}
-                    text={x.text}
-                    link={"s"}
-        />
-        ):""}
-     
-
-        
-
-
-        {title === "Startsida"?
-        <Bubbla data={ACF_BUBBLOR}/>
-        :"2"}
-
-      </div>
-      </div>
-      </div>
-
-
-    <div className="footer">
-          
-    </div>
-
-    </Layout>
+<div>
+  No data :/
+</div>
   )
-  {/* <p dangerouslySetInnerHTML={{ __html: content }} /> */}
 }
 
 export default BlogPost

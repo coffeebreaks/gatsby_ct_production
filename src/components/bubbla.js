@@ -8,7 +8,7 @@ function Bubbla(props){
     
    <div className="two-cols" >
      
-               <div className="flex-row" style={{  background: `url( ${props.data.bakgrundsbild.localFile.childImageSharp.fluid.originalImg} )`, backgroundColor: "#272727"  }} >
+               {/* <div className="flex-row" style={{  background: `url( ${props.data.bakgrundsbild.localFile.childImageSharp.fluid.originalImg} )`, backgroundColor: "#272727"  }} >
                <h1 style={{color: "white", margin: "3rem", maxWidth: "25ch", textAlign: "center"}}> {props.data.huvudrubrik}</h1>
                
                <div className="textFlex">
@@ -16,10 +16,12 @@ function Bubbla(props){
                  <div className="text-col">
                    <h1 className="text-wrapper-headings" style={{ lineHeight: "1", fontSize: "3rem", color: "rgb(114 223 255)"  }}>{text.rubrik}</h1>
                    <p style={{color: "white" }}>{text.text}</p>
+                 
                  </div>
+                 
                )}
                </div> 
-               </div>
+               </div> */}
                
                <div className="flex-row" >
     {props.data.kort.map(kort => 
