@@ -13,6 +13,7 @@ import { normalizePath } from "../../utils/get-url-path"
 import HeroModule from "../heroModule"
 import CardField from "../cardFieldModule"
 import InfoCardModule from "../infoCardModule"
+import FlipCards from "../flipCards"
 
 
 
@@ -52,7 +53,7 @@ if (ACF_CONTENT_LOOP.modules !== null){
     <div class="content-block">
 
         {title === "Startsida"?<Bubbla data={ACF_BUBBLOR}/>:"2"}
-
+        <FlipCards/>
       </div>
       </div>
       </div>
