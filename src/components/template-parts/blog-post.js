@@ -13,7 +13,9 @@ function BlogPost({ data }) {
   const { nextPage, previousPage, page } = data
   const { title, content, featuredImage, ACF_HERO, ACF_CONTENT_BLOCK, ACF_BUBBLOR, ACF_CONTENT_LOOP } = page
 
-
+const Btn = (props) => {
+  return  <button className="btn-primary" style={{ background: `${props.data.transparent? "rgba(0,0,0,0)":props.data.style}` ,marginRight: "2rem"}}>{props.data.text}</button> 
+}
   
 const HeroModule = (props) => {
   return (
@@ -22,6 +24,7 @@ const HeroModule = (props) => {
       
 <div className="full-width-image margin-top-0" style={{ backgroundImage: `url(${props.data.background.localFile.childImageSharp.fluid.originalImg}) `}}>
     
+    {console.log(props)}
     
     <div className="flexbox">
 
@@ -36,70 +39,59 @@ const HeroModule = (props) => {
 
 
         <div className="flexbox" style={{flexDirection: "row" }}>
-           
-        {
-          props.data.buttons.map(x => 
-            <>
-      
-            <a href={x.button.url.url}>
-            <button className="btn-primary" style={{ background: `${x.button.transparent? "rgba(0,0,0,0)":x.button.style}` ,marginRight: "2rem"}}>{x.button.text}</button>
-            </a>
-           
-        
+           <div>
 
-            </>
-            )
-        }
-           
-           
         </div>
-    
-    </div>
-    
-   
-    
+
+
+{/*         
+        {props.data.buttons ? <Btn data={props.data.page.ACF_CONTENT_LOOP.modules[0].buttons[0]}/>: ""} */}
+        
+        { props.data.buttons.map(x=>
+        <Btn data={x.knapp}/>
+        )
+      }
+        </div>
+    </div>   
 </div>
  
-
-
-
- 
-
- 
-
   </>
   )
 }  
+
+const CardField = (props) => {
+  return <> test </>
+}
  
 const translationTable = {
-  page_AcfContentLoop_Modules_HeroMod : HeroModule  
+  page_AcfContentLoop_Modules_HeroMod : HeroModule,  
+  page_AcfContentLoop_Modules_CardField : CardField  
 }
 
 
 const CreateModuleFromACF = (props) => {
   const ModuleToReturn = translationTable[props.fieldGroupName]
-  return (<><ModuleToReturn data={props.data}/></>)
+
+return (<>  
+  <ModuleToReturn data={props.data}/>
+  </>)
 }
-  
-
-
 
 if (ACF_CONTENT_LOOP.modules !== null){  
        
   return (
   <Layout>
-    {ACF_CONTENT_LOOP.modules.map(x => 
-      
-      <CreateModuleFromACF fieldGroupName={x.fieldGroupName} data={x} />
-      
+    {ACF_CONTENT_LOOP.modules.map(x =>       
+    <>
+    {x.fieldGroupName?<CreateModuleFromACF fieldGroupName={x.fieldGroupName} data={x} />:""}
+     </>
       )}
-   
 
    <div className="page-container">
     <div className="page-content">
     <div class="content-block">
 
-
+   
 
         {title === "Startsida"?ACF_CONTENT_BLOCK.innehall.map(x => 
         <CardBlock  background={x?.bild?.localFile?.childImageSharp?.fluid?.originalImg}

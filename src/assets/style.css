@@ -245,8 +245,7 @@ section.section.section--gradient {
   margin: 1rem;
   flex-basis: 0;
   padding: 2rem;
-  background: linear-gradient(45deg, #b9b9b9, rgb(255 255 255));
-  box-shadow: 1px 1px 10px black;
+  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
   flex-direction: column;
   justify-content: space-between;
   transition: all .8s cubic-bezier(0.165, 0.84, 0.44, 1);

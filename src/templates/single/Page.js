@@ -39,28 +39,18 @@ export const query = graphql`
             ... on WpPage_AcfContentLoop_Modules_HeroMod {
               fieldGroupName
               text
-              background {
-                localFile {
-                  childImageSharp {
-                    fluid {
-                      originalImg
-                    }
-                  }
+              background { 
+                localFile { childImageSharp { fluid {originalImg} } }
                 }
-              }
+              
+       
+            }
+            ... on WpPage_AcfContentLoop_Modules_HeroMod {
               buttons {
-                ... on WpPage_AcfContentLoop_Modules_HeroMod_Buttons_Knappar {
-                  fieldGroupName
-                  button {
-                    style
-                    transparent
-                    text
-                    url {
-                      target
-                      title
-                      url
-                    }
-                  }
+                knapp {
+                  style
+                  text
+                  transparent
                 }
               }
             }
