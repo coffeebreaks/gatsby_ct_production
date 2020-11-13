@@ -42,9 +42,8 @@ export const query = graphql`
               background { 
                 localFile { childImageSharp { fluid {originalImg} } }
                 }
-              
-       
             }
+
             ... on WpPage_AcfContentLoop_Modules_HeroMod {
               buttons {
                 knapp {
@@ -54,6 +53,24 @@ export const query = graphql`
                 }
               }
             }
+
+            ... on WpPage_AcfContentLoop_Modules_CardField {
+            card {
+              ... on WpPage_AcfContentLoop_Modules_CardField_Card_Textkort {
+                fieldGroupName
+                text
+                title
+                background { 
+                localFile { childImageSharp { fluid {originalImg} } }
+                }
+              }
+            }
+            fieldGroupName
+          }
+
+
+
+
           }
         }
 

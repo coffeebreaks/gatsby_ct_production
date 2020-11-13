@@ -210,13 +210,12 @@ section.section.section--gradient {
 
 .page-content {
   background: white;
-  padding: 2rem;
   box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
-
 }
 
 .content-block {
   display: flex;
+  padding: 1rem 2rem 0rem 2rem;
   justify-content: space-between;
   flex-wrap: wrap;
   flex-basis: 50%;

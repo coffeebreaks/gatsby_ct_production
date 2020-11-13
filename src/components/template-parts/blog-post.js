@@ -4,63 +4,47 @@ import { Link } from "gatsby"
 
 import Img from "gatsby-image"
 import Layout from "../../components/layout"
-import PageHero from "../pagehero"
 import CardBlock from "../cardblock"
 import Bubbla from "../bubbla"
 import { normalizePath } from "../../utils/get-url-path"
+
+// dynamic modules
+
+import HeroModule from "../heroModule"
+
+
 
 function BlogPost({ data }) {
   const { nextPage, previousPage, page } = data
   const { title, content, featuredImage, ACF_HERO, ACF_CONTENT_BLOCK, ACF_BUBBLOR, ACF_CONTENT_LOOP } = page
 
-const Btn = (props) => {
-  return  <button className="btn-primary" style={{ background: `${props.data.transparent? "rgba(0,0,0,0)":props.data.style}` ,marginRight: "2rem"}}>{props.data.text}</button> 
-}
-  
-const HeroModule = (props) => {
-  return (
-  <>
-
-      
-<div className="full-width-image margin-top-0" style={{ backgroundImage: `url(${props.data.background.localFile.childImageSharp.fluid.originalImg}) `}}>
-    
-    {console.log(props)}
-    
-    <div className="flexbox">
-
-       <div style={{color:"white"}}>
-
-         <div dangerouslySetInnerHTML={{__html: props.data.text}}/>
-  
-
-       </div>
-       
 
 
-
-        <div className="flexbox" style={{flexDirection: "row" }}>
-           <div>
-
-        </div>
-
-
-{/*         
-        {props.data.buttons ? <Btn data={props.data.page.ACF_CONTENT_LOOP.modules[0].buttons[0]}/>: ""} */}
-        
-        { props.data.buttons.map(x=>
-        <Btn data={x.knapp}/>
-        )
-      }
-        </div>
-    </div>   
-</div>
- 
-  </>
-  )
-}  
 
 const CardField = (props) => {
-  return <> test </>
+  console.log(props)
+  return (<>
+    <div class="content-block">
+  {props.data.card?.map(x => 
+    <>
+   
+    <div className="content-card" style={{background: `url(${x.background.localFile.childImageSharp.fluid.originalImg})`    }} >
+      <div className="card-arrow">
+      ⇀
+      </div>
+      <div class="text-wrapper">
+        <h1 className="text-wrapper-headings" style={{fontSize: "50px"}}>{x.title}</h1>
+        <p>{x.text}</p>
+      </div>      
+    </div>
+
+
+
+    </>
+    )}
+    </div>
+   
+    </>)
 }
  
 const translationTable = {
@@ -81,33 +65,23 @@ if (ACF_CONTENT_LOOP.modules !== null){
        
   return (
   <Layout>
+    <div className="page-container">
+      <div className="page-content">
     {ACF_CONTENT_LOOP.modules.map(x =>       
     <>
     {x.fieldGroupName?<CreateModuleFromACF fieldGroupName={x.fieldGroupName} data={x} />:""}
      </>
       )}
-
-   <div className="page-container">
-    <div className="page-content">
     <div class="content-block">
+
 
    
 
-        {title === "Startsida"?ACF_CONTENT_BLOCK.innehall.map(x => 
-        <CardBlock  background={x?.bild?.localFile?.childImageSharp?.fluid?.originalImg}
-                    rubrik={x.rubrik}
-                    text={x.text}
-                    link={"s"}
-        />
-        ):""}
 
 
 
 
-
-        {title === "Startsida"?
-        <Bubbla data={ACF_BUBBLOR}/>
-        :"2"}
+        {title === "Startsida"?<Bubbla data={ACF_BUBBLOR}/>:"2"}
 
       </div>
       </div>
